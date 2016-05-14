@@ -28,10 +28,15 @@ module.exports = {
 		resolve: {
 			extensions: [".js", ""]
 		},
-        alias: isProduction ? {
-			"react": "react/dist/react-with-addons.min.js",
-			"react-dom": "react-dom/dist/react-dom.min.js"
-        } : {}
+        alias: isProduction ?
+			{
+				"react": "react/dist/react-with-addons.min.js",
+				"react-dom": "react-dom/dist/react-dom.min.js",
+				"d3": "d3/d3.min.js"
+			} :
+			{
+				"d3": "d3/d3.min.js"
+			}
 	},
 	module: {
 		loaders: [{
