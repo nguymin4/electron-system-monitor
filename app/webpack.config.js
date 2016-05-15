@@ -33,7 +33,8 @@ module.exports = {
 		"react": "React",
 		"react-dom": "ReactDOM",
 		"flux": "flux",
-		"flux/utils": "fluxUtils"
+		"flux/utils": "fluxUtils",
+		"d3": "d3"
 	},
 	target: "electron-renderer",
 	module: {
