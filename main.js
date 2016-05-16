@@ -3,8 +3,9 @@ var {app, BrowserWindow} = require("electron");
 var mainWindow;
 app.on("ready", () => {
 	mainWindow = new BrowserWindow({
-		width: 600,
-		height: 500
+		width: 800,
+		height: 660,
+		icon: "app/dist/img/presentation-icon.png"
 	}).on("closed", () => mainWindow = null);
 
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`);

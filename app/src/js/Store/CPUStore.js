@@ -6,14 +6,15 @@ var info = {
 	model: "",
 	upTime: [0, 0, 0],
 	clockSpeed: 0,
-	loadAvg: 0
+	loadAvg: os.loadavg(),
+	avg: 0
 };
 
 class CPUStore extends Emitter {
 	constructor() {
 		super();
 		this.getData(true);
-		setInterval(this.getData.bind(this), 1500);
+		setInterval(this.getData.bind(this), 1000);
 	}
 
 	getState() {
@@ -33,7 +34,7 @@ class CPUStore extends Emitter {
 			var endMeasure = cpuAverage();
 			var idleDiff = endMeasure.idle - startMeasure.idle;
 			var totalDiff = endMeasure.total - startMeasure.total;
-			info.loadAvg = 100 - (idleDiff * 100 / totalDiff); 
+			info.avg = 100 - (idleDiff * 100 / totalDiff); 
 			this.emit("change", info);
 		}, 100);
 	}

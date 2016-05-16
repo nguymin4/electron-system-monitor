@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import DonutChart from "../Chart/DonutChart";
+import DonutChart from "./DonutChart";
 
 var color = function (i) {
 	return ["#e58c72", "#ffffff"][i];
@@ -27,16 +27,14 @@ class CPUIndicator extends Component {
 			<div className="card-body">
 				<DonutChart width={200} height={130}
 					outerRadius={60} innerRadius={30}
-					data={[model.loadAvg, 100 - model.loadAvg]}
-					text={model.loadAvg.toFixed(0)}
+					data={[model.avg, 100 - model.avg]}
+					text={model.avg.toFixed(0)}
 					textStyle={textStyle}
 					color={color} />
 			</div>
 		);
 	}
 	render() {
-		var model = this.props.model;
-
 		return (
 			<div className="col-xs-4">
 				<div className="card" style={{ backgroundColor: "#64b0cc" }}>
