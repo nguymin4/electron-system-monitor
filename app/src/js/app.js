@@ -19,8 +19,10 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<div>
-				<Memory model={this.state.memory} />
+			<div className="container">
+				<div className="cards row">
+					<Memory model={this.state.memory} />
+				</div>
 			</div>
 		);
 	}
