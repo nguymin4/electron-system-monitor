@@ -11,6 +11,8 @@ body {
 	padding: 40px 0px 20px 0px;
 	width: 100%;
 	min-height: calc(100vh - 75px);
+	// background-color: rgba(0, 0, 0, 0.1);
 }
 
 @import "cards";
+@import "panels";
