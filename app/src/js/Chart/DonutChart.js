@@ -21,8 +21,10 @@ class DonutChart extends Component {
 		);
 	}
 	renderText() {
+		var text = this.props.text ? this.props.text + "%" : "";
+		var x = text.length > 2 ? "-15" : "-10";
 		return (
-			<text x="-15" y="5" style={this.props.textStyle}>
+			<text x={x} y="5" text-anchor="middle" style={this.props.textStyle}>
 				{this.props.text ? this.props.text + "%" : ""}
 			</text>
 		);

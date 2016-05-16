@@ -5,20 +5,19 @@ var color = function (i) {
 	return ["#e58c72", "#ffffff"][i];
 };
 
-class MemoryIndicator extends Component {
-	renderHeader(usedMemory) {
+class CPUIndicator extends Component {
+	renderHeader() {
 		var model = this.props.model;
 		return (
 			<div className="card-header">
-				<div className="pull-left">Memory</div>
+				<div className="pull-left">CPU</div>
 				<div className="pull-right">
-					{ (usedMemory / 1024).toFixed(1) } GB /
-					{ " " + (model.totalMemory / 1024).toFixed(1) } GB
+					Speed: {model.clockSpeed} Mhz 
 				</div>
 			</div>
 		);
 	}
-	renderBody(usedMemory) {
+	renderBody() {
 		var model = this.props.model;
 		var textStyle = {
 			fill: "#ffffff",
@@ -28,8 +27,8 @@ class MemoryIndicator extends Component {
 			<div className="card-body">
 				<DonutChart width={200} height={130}
 					outerRadius={60} innerRadius={30}
-					data={[usedMemory, model.freeMemory]}
-					text={(usedMemory * 100 / model.totalMemory).toFixed(0) }
+					data={[model.loadAvg, 100 - model.loadAvg]}
+					text={model.loadAvg.toFixed(0)}
 					textStyle={textStyle}
 					color={color} />
 			</div>
@@ -37,22 +36,21 @@ class MemoryIndicator extends Component {
 	}
 	render() {
 		var model = this.props.model;
-		var usedMemory = model.totalMemory - model.freeMemory;
 
 		return (
 			<div className="col-xs-4">
-				<div className="card" style={{ backgroundColor: "#53c79f" }}>
-					{this.renderHeader(usedMemory) }
+				<div className="card" style={{ backgroundColor: "#64b0cc" }}>
+					{this.renderHeader() }
 					<hr />
-					{this.renderBody(usedMemory) }
+					{this.renderBody() }
 				</div>
 			</div>
 		);
 	}
 }
 
-MemoryIndicator.propTypes = {
+CPUIndicator.propTypes = {
 	model: PropTypes.object.isRequired
 };
 
-export default MemoryIndicator;
+export default CPUIndicator;
