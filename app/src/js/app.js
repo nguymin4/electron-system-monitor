@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {render} from "react-dom";
-import Memory from "./Memory";
-import MemoryStore from "./MemoryStore";
+import MemoryIndicator from "./Indicator/MemoryIndicator";
+import MemoryStore from "./Store/MemoryStore";
 
 class App extends Component {
 	constructor(props) {
@@ -21,7 +21,7 @@ class App extends Component {
 		return (
 			<div className="container">
 				<div className="cards row">
-					<Memory model={this.state.memory} />
+					<MemoryIndicator model={this.state.memory} />
 				</div>
 			</div>
 		);

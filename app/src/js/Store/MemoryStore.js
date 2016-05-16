@@ -1,4 +1,4 @@
-import {Emitter} from "./util";
+import Emitter from "../Helper/Emitter";
 
 var os = require("os");
 var exec = require("child_process").exec;

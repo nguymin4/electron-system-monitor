@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from "react";
-import DonutChart from "./chart/DonutChart";
+import DonutChart from "../Chart/DonutChart";
 
 var color = function (i) {
 	return ["#e58c72", "#ffffff"][i];
 };
 
-class Memory extends Component {
+class MemoryIndicator extends Component {
 	renderHeader(usedMemory) {
 		var model = this.props.model;
 		return (
@@ -51,8 +51,8 @@ class Memory extends Component {
 	}
 }
 
-Memory.propTypes = {
+MemoryIndicator.propTypes = {
 	model: PropTypes.object.isRequired
 };
 
-export default Memory;
+export default MemoryIndicator;
