@@ -1,0 +1,15 @@
+.cards {
+	.card {
+		max-width: 200px;
+		height: 200px;
+		color: #FFFFFF;
+		border-radius: 5px;
+	}
+	.card-header {
+		padding: 10px;
+	}
+	
+	hr {
+		border-top-color: rgba(100, 100, 100, 0.2);
+	}
+}

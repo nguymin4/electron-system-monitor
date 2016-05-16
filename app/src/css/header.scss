@@ -1,0 +1,24 @@
+header {
+	height: 75px;
+	font-size: 1.75em;
+	line-height: 75px;
+	
+	.logo {
+		background-color: #e58c72;
+		height: 100%;
+		width: 160px;
+		line-height: 80px;
+		text-align: center;
+		color:#FFFFFF;
+		
+		.fa {
+			margin-top: 10px;
+			font-size: 2em;
+		}
+	}
+	
+	.text {
+		margin-left: 25px;
+		color: #6e6e74;
+	}
+} 
