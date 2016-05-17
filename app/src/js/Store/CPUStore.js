@@ -6,7 +6,6 @@ var info = {
 	model: "",
 	upTime: [0, 0, 0],
 	clockSpeed: 0,
-	loadAvg: os.loadavg(),
 	avg: 0
 };
 

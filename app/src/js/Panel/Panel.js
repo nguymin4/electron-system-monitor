@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from "react";
 import AreaChart from "./AreaChart";
-import {formatTime} from "../Helper/util";
 
 class Panel extends Component {
 	renderHeader() {
@@ -19,7 +18,7 @@ class Panel extends Component {
 		return (
 			<div className="panel-body">
 				<AreaChart type={this.props.title}
-					field={this.props.field} 
+					field={this.props.field}
 					data={this.props.data}
 					fill={this.props.fill} />
 			</div>
@@ -27,15 +26,12 @@ class Panel extends Component {
 	}
 	renderUptime() {
 		var upTime = this.props.data.upTime;
-		if (upTime) {
-			upTime = upTime.map(formatTime);
-			return (
-				<span>
-					Uptime: {`${upTime[0]}:${upTime[1]}:${upTime[2]}`}
-				</span>
-			);
-		}
-		return "";
+		if (!upTime) return "";
+		return (
+			<span>
+				Uptime: {upTime.map(n => n < 10 ? `0${n}` : n).join(":") }
+			</span>
+		);
 	}
 	render() {
 		return (
