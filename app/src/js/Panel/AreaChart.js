@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from "react";
+import {findDOMNode} from "react-dom";
 import History from "../Helper/History";
 import Axis from "./Axis";
 import Grid from "./Grid";
@@ -34,12 +35,26 @@ class AreaChart extends Component {
 		var data = nextProps.data[nextProps.field];
 		this.history.push(data);
 	}
+	componentDidMount() {
+		var node = findDOMNode(this);
+		window.addEventListener("resize", recalibrate.bind(this));
+		recalibrate.call(this);
+		
+		function recalibrate() {
+			var width = node.clientWidth - 42;
+			this.xScale = d3.scale.linear()
+				.domain([60, 0])
+				.range([0, width]);
+			this.setState({ width: width });
+		}
+	}
+
 	renderArea() {
-		var translate = `translate(30, 20)`;
+		var translate = `translate(35, 20)`;
 		var fill = hexToRgb(this.props.fill);
 		var fillColor = `rgba(${fill.r}, ${fill.g}, ${fill.b}, 0.3)`;
 		var data = this.history.get();
-		
+
 		return (
 			<path className="area" transform={translate}
 				fill={fillColor} stroke={this.props.fill}

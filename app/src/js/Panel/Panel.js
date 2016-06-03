@@ -35,7 +35,7 @@ class Panel extends Component {
 	}
 	render() {
 		return (
-			<div className="col-lg-6">
+			<div className="col-md-6">
 				<div className="chart-panel">
 					{this.renderHeader() }
 					{this.renderBody() }
