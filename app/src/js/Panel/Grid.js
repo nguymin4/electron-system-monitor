@@ -21,7 +21,7 @@ class Grid extends Component {
 		d3.select(findDOMNode(this)).call(this.Grid);
 	}
 	render() {
-		var translate = `translate(30, ${
+		var translate = `translate(35, ${
 			this.props.GridType == "x" ? this.props.height + 20 : 20
 		})`;
 		return (

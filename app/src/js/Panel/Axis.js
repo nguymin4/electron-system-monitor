@@ -20,7 +20,7 @@ class Axis extends Component {
 		d3.select(findDOMNode(this)).call(this.axis);
 	}
 	render() {
-		var translate = `translate(30, ${
+		var translate = `translate(35, ${
 			this.props.axisType == "x" ? this.props.height + 20 : 20
 		})`;
 		return (

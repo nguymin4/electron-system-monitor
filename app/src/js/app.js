@@ -15,23 +15,32 @@ class App extends Component {
 			memory: MemoryStore.getState(),
 			cpu: CPUStore.getState()
 		};
+		setInterval(function () {
+			CPUStore.getData();
+			MemoryStore.getUsedMemory();
+		}, 1000);
 	}
 	componentDidMount() {
-		MemoryStore.on("change", memoryState => {
-			this.setState({
-				memory: memoryState
-			});
+		MemoryStore.on("change", value => {
+			updateState.call(this, "memory", value);
 		});
 
-		CPUStore.on("change", cpuState => {
-			this.setState({
-				cpu: cpuState
-			});
+		CPUStore.on("change", value => {
+			updateState.call(this, "cpu", value);
 		});
+		
+		var newState = {};
+		function updateState(type, value) {
+			newState[type] = value;
+			if (Object.getOwnPropertyNames(newState).length === 2) {
+				this.setState(newState);
+				newState = {};
+			}
+		}
 	}
 	renderPanel() {
 		return [
-			{ title: "CPU", state: "cpu" , field: "avg", fill: "#e5c072" },
+			{ title: "CPU", state: "cpu", field: "avg", fill: "#e5c072" },
 			{ title: "Memory", state: "memory", field: "avg", fill: "#53c79f" }
 		].map(model => <Panel key={model.title}
 			title={model.title}

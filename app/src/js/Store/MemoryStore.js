@@ -8,11 +8,6 @@ var totalMemory = (os.totalmem() / (1024 * 1024));
 var cmd = `free | grep Mem | xargs | cut -d " " -f7`;
 
 class MemoryStore extends Emitter {
-	constructor() {
-		super();
-		setInterval(this.getUsedMemory.bind(this), 1000);
-	}
-
 	getState() {
 		return {
 			totalMemory: totalMemory,

@@ -13,7 +13,6 @@ class CPUStore extends Emitter {
 	constructor() {
 		super();
 		this.getData(true);
-		setInterval(this.getData.bind(this), 1000);
 	}
 
 	getState() {
@@ -35,7 +34,7 @@ class CPUStore extends Emitter {
 			var totalDiff = endMeasure.total - startMeasure.total;
 			info.avg = 100 - (idleDiff * 100 / totalDiff); 
 			this.emit("change", info);
-		}, 100);
+		}, 1000);
 	}
 	calculateUptime() {
 		var result = [];
