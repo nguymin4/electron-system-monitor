@@ -1,9 +1,12 @@
 import React, {Component, PropTypes} from "react";
 import History from "../Helper/History";
 import Axis from "./Axis";
+import Grid from "./Grid";
 import d3 from "d3";
 import {hexToRgb} from "../Helper/util";
 
+
+// ["#53c79f", "#64b0cc", "#7a6fca", "#ca6f96", "#e58c72", "#e5c072"];
 var height = 280;
 class AreaChart extends Component {
 	constructor(props) {
@@ -46,6 +49,8 @@ class AreaChart extends Component {
 	render() {
 		return (
 			<svg>
+				<Grid height={height} len={this.state.width} scale={this.yScale} axisType="y"
+					orient="left" uiClass="axis" ticks={10} />
 				<Axis height={height} scale={this.yScale} axisType="y"
 					orient="left" uiClass="axis" ticks={10} />
 				<Axis height={height} scale={this.xScale} axisType="x"
