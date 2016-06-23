@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {findDOMNode} from "react-dom";
 import History from "../Helper/History";
+import ResizableComponent from "../Helper/ResizableComponent";
 import Axis from "./Axis";
 import Grid from "./Grid";
 import d3 from "d3";
@@ -9,7 +10,8 @@ import {hexToRgb} from "../Helper/util";
 
 // ["#53c79f", "#64b0cc", "#7a6fca", "#ca6f96", "#e58c72", "#e5c072"];
 var height = 280;
-class AreaChart extends Component {
+
+class AreaChart extends ResizableComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -35,20 +37,6 @@ class AreaChart extends Component {
 		var data = nextProps.data[nextProps.field];
 		this.history.push(data);
 	}
-	componentDidMount() {
-		var node = findDOMNode(this);
-		window.addEventListener("resize", recalibrate.bind(this));
-		recalibrate.call(this);
-		
-		function recalibrate() {
-			var width = node.clientWidth - 42;
-			this.xScale = d3.scale.linear()
-				.domain([60, 0])
-				.range([0, width]);
-			this.setState({ width: width });
-		}
-	}
-
 	renderArea() {
 		var translate = `translate(35, 20)`;
 		var fill = hexToRgb(this.props.fill);
@@ -73,6 +61,15 @@ class AreaChart extends Component {
 				{this.renderArea() }
 			</svg>
 		);
+	}
+	
+	recalibrate() {
+		var node = findDOMNode(this);
+		var width = node.clientWidth - 42;
+		this.xScale = d3.scale.linear()
+			.domain([60, 0])
+			.range([0, width]);
+		this.setState({ width: width });
 	}
 }
 

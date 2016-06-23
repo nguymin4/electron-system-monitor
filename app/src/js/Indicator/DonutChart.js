@@ -1,9 +1,11 @@
 import React, {Component, PropTypes} from "react";
 import {findDOMNode} from "react-dom";
+import ResizableComponent from "../Helper/ResizableComponent";
 import d3 from "d3";
 
 var pie = d3.layout.pie().sort(null);
-class DonutChart extends Component {
+
+class DonutChart extends ResizableComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,16 +14,6 @@ class DonutChart extends Component {
 		this.arc = d3.svg.arc()
 			.innerRadius(this.props.innerRadius)
 			.outerRadius(this.props.outerRadius);
-	}
-	componentDidMount() {
-		var node = findDOMNode(this);
-		window.addEventListener("resize", recalibrate.bind(this));
-		recalibrate.call(this);
-
-		function recalibrate() {
-			var transform = `translate(${node.clientWidth / 2}, ${this.props.height / 2})`;
-			this.setState({ transform: transform });
-		}
 	}
 	renderPaths() {
 		return pie(this.props.data).map((d, i) =>
@@ -50,6 +42,12 @@ class DonutChart extends Component {
 				</g>
 			</svg>
 		);
+	}
+
+	recalibrate() {
+		var node = findDOMNode(this);
+		var transform = `translate(${node.clientWidth / 2}, ${this.props.height / 2})`;
+		this.setState({ transform: transform });
 	}
 }
 
